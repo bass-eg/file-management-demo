@@ -57,8 +57,8 @@ public class DynamicModelService {
         david.put("name", "David");
         Map<String, Object> mostafa = new HashMap<>();
         mostafa.put("name", "Mostafa");
-        s.save("Customer",david);
-        s.save("Customer",mostafa);
+        s.save("Dog",david);
+        s.save("Dog",mostafa);
         tx.commit();
         s.close();
     }

@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.io.File;
 
 @Configuration
 @EnableTransactionManagement
@@ -74,15 +75,18 @@ public class HibernateUtils {
 
     @Bean
     public SessionFactory sessionFactory() {
+        System.err.println("Create session");
         SessionFactory sessionFactory = null;
         try {
             //Create the configuration object.
+            //org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
             org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
             //Initialize the configuration object
             //with the configuration file data
             configuration.configure("hibernate.cfg.xml");
             // Get the SessionFactory object from configuration.
-            sessionFactory = configuration.buildSessionFactory();
+            //sessionFactory = configuration.buildSessionFactory();
+            sessionFactory = new org.hibernate.cfg.Configuration().addDirectory(new File("./")).configure().buildSessionFactory();
         }
         catch (Exception e) {
             e.printStackTrace();
